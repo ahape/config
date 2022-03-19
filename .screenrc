@@ -1,0 +1,45 @@
+startup_message off
+
+# Failed attempt at having a new window be from the current
+# directory of THIS window
+#bind ^x
+#bind ^x stuff "screen -X chdir \$PWD;screen^M"
+
+# % -- Prints a variable
+# {<color code>} -- Set color
+# {= <color code>} -- Set color inverted
+#
+# Colors:
+# B -- Blue
+# BW -- Blue and white
+# kG -- Current shell color (?) and green
+# kw -- Current shell color (?) and white
+# W -- White (text)
+# g -- Green (text)
+# r -- Red (text)
+# - -- Previous style
+#
+# Variables:
+# c -- HH:mm
+# LM -- Month name (long)
+# d -- Date
+# LD -- Day name (long)
+# H -- Computer name
+# -= -- ?
+# -w -- ...for the previous window(s)
+# -Lw -- Just some weird line before the window?
+# +w -- ...for the current window
+# +Lw -- ?
+# n -- Window number
+# t -- Window title
+# f -- Something that doesn't apply (or only for current window)?
+# = -- Margin auto
+# -= -- Also margin auto
+#
+#caption always "%{= kw}%-w%{= BW}%n %t%{-}%+w %-= @%H - %LD %d %LM - %c:%s"
+caption always "%{= kY}%-Lw%{= kC}%n* %t%{-}%+w %= %{= kW}@%H %Y-%m-%d %c"
+
+#hardstatus alwayslastline
+#hardstatus string '%{= kG}[ %{G}%H %{g}][%= %{= kw}%?%-Lw%?%{r}(%{W}%n*%f%t%?(%u)%?%{r})%{w}%?%+Lw%?%? %= %{g}][%{B} %m/%d %{W}%c %{g}]'
+
+defscrollback 50000
