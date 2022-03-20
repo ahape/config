@@ -1,5 +1,8 @@
 startup_message off
 
+# See https://www.gnu.org/software/screen/manual/html_node/Dynamic-Titles.html
+shelltitle '% |zsh'
+
 # Failed attempt at having a new window be from the current
 # directory of THIS window
 #bind ^x
