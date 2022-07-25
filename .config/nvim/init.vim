@@ -20,7 +20,9 @@ if stridx(getreg("%"), "brightmetrics") > 0
   set sw=4 ts=4 " Keep it classy at work
 endif
 
-autocmd BufRead,BufNewFile *.cs,*.csx setlocal sw=4 ts=4
+autocmd BufRead,BufNewFile *.cs,*.csx setlocal sw=4 ts=4 filetype=cs
+autocmd BufRead,BufNewFile todos.txt setlocal tw=80 ts=2 sw=2
+
 
 "
 " The following settings replace 'grep' with 'git grep'. Use 'vimgrep' if
@@ -40,3 +42,12 @@ function GitGrepWord()
   execute "G -w -e ".getreg("z")." **/*.".filetype
 endfunction
 nmap <C-x>] :call GitGrepWord()<CR>
+
+" Returns:
+" ----------
+" 2022-04-27
+" ----------
+function Date()
+    let hr = "----------"
+    return hr."\n".strftime("%Y-%m-%d")."\n".hr."\n"
+endfunction
