@@ -16,13 +16,12 @@ set guicursor=c:block
 " Otherwise Python will be indented 4 spaces and pretty much impossible to override
 let g:python_recommended_style=0
 
-if stridx(getreg("%"), "brightmetrics") > 0
+if !empty($RESTEndpoint)
   set sw=4 ts=4 " Keep it classy at work
 endif
 
 autocmd BufRead,BufNewFile *.cs,*.csx setlocal sw=4 ts=4 filetype=cs
 autocmd BufRead,BufNewFile todos.txt setlocal tw=80 ts=2 sw=2
-
 
 "
 " The following settings replace 'grep' with 'git grep'. Use 'vimgrep' if
