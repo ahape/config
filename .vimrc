@@ -1,80 +1,53 @@
-syntax enable
-
-" UI
 set number
-set showcmd
-set wrap
-set ruler
 
-" spaces & tabs
-set tabstop=4
-set softtabstop=4
-set shiftwidth=4
+" Indentation related
 set expandtab
-set ai
-set listchars+=space:-,trail:Z
+set tabstop=2
+set shiftwidth=2
+set autoindent
 
-" stuff
-filetype indent on
-set ls=2
-set re=0
-
-" files
-set nobackup
-set nowb
-set noswapfile
-
-" searching
-set incsearch
-set hlsearch
+" Search related
 set smartcase
 set ignorecase
 
-" abbreviations
-iabbrev funciton function
-iabbrev funciotn function
-iabbrev fucniton function
+" Otherwise cursor will be thin imperceptible line
+set guicursor=c:block
 
-" mappings
-let mapleader = ","
-"nnoremap j jzz
-"nnoremap k kzz
-"nnoremap n nzz
-"nnoremap N Nzz
-"nnoremap J +zz
-"nnoremap K -zz
-"nnoremap B ^
-"nnoremap E $
-nnoremap <Space>o o<Esc>k
-nnoremap <Space>O O<Esc>j
-"nnoremap <C-j> <C-w>j
-"nnoremap <C-k> <C-w>k
-"nnoremap <C-h> <C-w>h
-"nnoremap <C-l> <C-w>l
-nnoremap <Leader>w :w<Return>
-nnoremap <Leader>c I//<Esc>
-nnoremap <Leader>" ciw""<Esc>P
-nnoremap <Leader>' ciw''<Esc>P
-nnoremap <Leader>` ciw``<Esc>P
-vnoremap <Leader>" c""<Esc>P
-vnoremap <Leader>' c''<Esc>P
-vnoremap <Leader>` c``<Esc>P
+" Otherwise Python will be indented 4 spaces and pretty much impossible to override
+let g:python_recommended_style=0
 
-augroup AutoCommands
-    autocmd BufRead,BufNewFile *.txt,*.md setlocal spell
-    autocmd BufRead,BufNewFile *.txt,*.md setlocal tw=80
-augroup END
+if !empty($RESTEndpoint)
+  set sw=4 ts=4 " Keep it classy at work
+endif
 
-" start vim-plug
-"call plug#begin('~/.vim/plugged')
+autocmd BufRead,BufNewFile *.cs,*.csx setlocal sw=4 ts=4 filetype=cs
+autocmd BufRead,BufNewFile todos.txt setlocal tw=80 ts=2 sw=2
 
-" plugin section
-"Plug 'pangloss/vim-javascript'
-"Plug 'leafgarland/typescript-vim'
-"Plug 'maxmellon/vim-jsx-pretty'
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install', 'for': ['javascript', 'typescript', 'css', 'less', 'scss', 'json', 'graphql', 'markdown', 'vue', 'yaml', 'html'] }
-"let g:prettier#autoformat = 0
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+"
+" The following settings replace 'grep' with 'git grep'. Use 'vimgrep' if
+" outside of a git repo.
+"
+set grepprg=git\ grep\ -n\ $*
+" Has the quickfix window show up immediately
+" (for all qf commands other than lgrep)
+autocmd QuickFixCmdPost [^l]* cwindow
+" Aliases :grep to :G as well as doesn't jump to the first hit, and silences
+" the 'Press ENTER to continue' prompt
+command! -nargs=? G execute "silent grep! <args>"
 
-" end vim-plug
-"call plug#end()
+" A convenience command for running grep on the word under the cursor (`C-x ]`).
+function GitGrepWord()
+  let filetype = split(getreg("%"), "[.]")[-1]
+  normal! "zyiw
+  execute "G -w -e ".getreg("z")." **/*.".filetype
+endfunction
+nmap <C-x>] :call GitGrepWord()<CR>
+
+" Returns:
+" ----------
+" 2022-04-27
+" ----------
+function Date()
+    let hr = "----------"
+    return hr."\n".strftime("%Y-%m-%d")."\n".hr."\n"
+endfunction
