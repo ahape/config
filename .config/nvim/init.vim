@@ -33,6 +33,8 @@ autocmd BufRead,BufNewFile *.txt setlocal tw=80 ts=2 sw=2
 " Has the quickfix window show up immediately instead of previewing results
 " first
 autocmd QuickFixCmdPost [^l]* cwindow
+cabbrev w' w
+cabbrev w] w
 
 " Ctrl+C a visual block as if it was highlighted text (Windows)
 vnoremap <C-c> "*y
