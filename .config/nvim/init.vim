@@ -55,3 +55,16 @@ function MakeSession(...)
   args `=l:files`
   silent! argdo edit
 endfunction
+
+" Browse recent files. Better than `browse oldfiles` because you can
+" actually `gf` the file you want
+function Recent()
+  let @x = ""
+  silent browse oldfiles "Not sure if I need this?
+  for file in v:oldfiles
+    if match(f, '\.[a-z]\{1,10}$')
+      let @X = file.."\n"
+    endif
+  endfor
+  exec 'enew | "xp'
+endfunction
