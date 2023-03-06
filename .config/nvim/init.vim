@@ -62,7 +62,7 @@ function Recent()
   let @x = ""
   silent browse oldfiles "Not sure if I need this?
   for file in v:oldfiles
-    if match(f, '\.[a-z]\{1,10}$')
+    if match(file, '\.[a-z]\{1,10}$')
       let @X = file.."\n"
     endif
   endfor
