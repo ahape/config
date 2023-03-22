@@ -1,0 +1,23 @@
+# This is Git's per-user configuration file.
+[user]
+        name = Alan Hape
+        email = ahape@brightmetrics.com
+
+[help]
+        autocorrect = 2
+
+[push]
+        autoSetupRemote = true
+
+[grep]
+        fullName = true
+        lineNumber = true
+
+[log]
+        abbrevCommit = true
+
+[format]
+        pretty = oneline
+
+[core]
+        autocrlf = true
