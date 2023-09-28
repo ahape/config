@@ -36,6 +36,9 @@ autocmd QuickFixCmdPost [^l]* cwindow
 cabbrev w' w
 cabbrev w] w
 
+" Easy escape rope
+command Q quitall!
+
 " Ctrl+C a visual block as if it was highlighted text (Windows)
 vnoremap <C-c> "*y
 
