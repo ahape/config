@@ -39,6 +39,9 @@ cabbrev w] w
 " Easy escape rope
 command Q quitall!
 
+" Allows `gf` on filenames with line/col info appended (e.g. file.cs:1: ...)
+set includeexpr=substitute(v:fname,':.*','','g')
+
 " Ctrl+C a visual block as if it was highlighted text (Windows)
 vnoremap <C-c> "*y
 
