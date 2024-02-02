@@ -1,27 +1,45 @@
 # Change this to based on wherever your Python lives.
-PY_PATH="/usr/local/opt/python@3.11/Frameworks/Python.framework/Versions/3.11/bin"
-IPYTHON="/usr/local/lib/python3.11/site-packages/IPython"
+HOMEBREW_BIN="/opt/homebrew/bin"
 
 alias ls="ls --color"
-alias py="$PY_PATH/python3.11"
-alias ipy="py $IPYTHON"
+alias py="$HOMEBREW_BIN/python3.11"
+alias python=$py
 
 # Makes autocompletion of commands case insensitive
 compctl -M '' 'm:{a-zA-Z}={A-Za-z}'
+
+# Add wireshark executables
+export PATH="$PATH:/Applications/Wireshark.app/Contents/MacOS/" 
+export PATH="$PATH:$HOMEBREW_BIN"
+
+# Add own custom executables
+export PATH="$PATH:/Users/alanhape/Commands"
+
+# Add frequently used commands in typeformer project
+export PATH="$PATH:/Users/alanhape/Projects/typeformer/tools"
+
+# Add .NET Core SDK tools
+export PATH="$PATH:/Users/alanhape/.dotnet/tools"
+
+# Add GoogleCloud stuff?
+#export PATH="$PATH:/Users/alanhape/Downloads/google-cloud-sdk/bin"
+
+# Add Chromium build tools
+export PATH="$PATH:/Users/alanhape/Projects/chromium-workspace/depot_tools"
+
+export EDITOR=nvim
 
 # See http://aperiodic.net/screen/title_examples
 # Allows for screen command to read current process name out to window title
 #alias postcmd 'echo -ne "^[k\!#:0^[\\"'
 
 # Test to see if we're using screen
-is_screen_session=`ps t | grep "login -pflq alanhape /bin/zsh" | grep -v grep`
+#is_screen_session=`ps t | grep "login -pflq alanhape /bin/zsh" | grep -v grep`
 
-if test "$is_screen_session"
-then
-  # Allows for screen command to read current process name out to window title
-  preexec () {
-    echo -ne "\ek${1%% *}\e\\"
-  }
-fi
-
-export PATH="$PY_PATH:/Users/alanhape/Commands:$PATH"
+#if test "$is_screen_session"
+#then
+#  # Allows for screen command to read current process name out to window title
+#  preexec () {
+#    echo -ne "\ek${1%% *}\e\\"
+#  }
+#fi
