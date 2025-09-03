@@ -2,7 +2,7 @@
 HOMEBREW_BIN="/opt/homebrew/bin"
 
 alias ls="ls --color"
-alias py="$HOMEBREW_BIN/python3.11"
+alias py="$HOMEBREW_BIN/python3.13"
 alias python=$py
 
 # Makes autocompletion of commands case insensitive
@@ -10,6 +10,7 @@ compctl -M '' 'm:{a-zA-Z}={A-Za-z}'
 
 # Add wireshark executables
 export PATH="$PATH:/Applications/Wireshark.app/Contents/MacOS/" 
+
 export PATH="$PATH:$HOMEBREW_BIN"
 
 # Add own custom executables
@@ -20,6 +21,9 @@ export PATH="$PATH:/Users/alanhape/Projects/typeformer/tools"
 
 # Add .NET Core SDK tools
 export PATH="$PATH:/Users/alanhape/.dotnet/tools"
+
+# Add powershell
+export PATH="$PATH:/usr/local/microsoft/powershell/7"
 
 # Add GoogleCloud stuff?
 #export PATH="$PATH:/Users/alanhape/Downloads/google-cloud-sdk/bin"
@@ -43,3 +47,9 @@ export EDITOR=nvim
 #    echo -ne "\ek${1%% *}\e\\"
 #  }
 #fi
+
+# The next line updates PATH for the Google Cloud SDK.
+if [ -f '/Users/alanhape/Downloads/google-cloud-sdk/path.zsh.inc' ]; then . '/Users/alanhape/Downloads/google-cloud-sdk/path.zsh.inc'; fi
+
+# The next line enables shell command completion for gcloud.
+if [ -f '/Users/alanhape/Downloads/google-cloud-sdk/completion.zsh.inc' ]; then . '/Users/alanhape/Downloads/google-cloud-sdk/completion.zsh.inc'; fi

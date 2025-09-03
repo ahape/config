@@ -4,7 +4,7 @@
         email = ahape@brightmetrics.com
 
 [help]
-        autocorrect = 2
+        autocorrect = 1
 
 [push]
         autoSetupRemote = true
@@ -19,5 +19,6 @@
 [format]
         pretty = oneline
 
-[core]
-        autocrlf = true
+#[core]
+#       autocrlf = input # Mac
+#       autocrlf = true # Windows
