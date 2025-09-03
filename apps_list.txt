@@ -1,0 +1,29 @@
+Discord.app
+ExpressVPN.app
+Fiddler Everywhere.app
+Firefox.app
+GarageBand.app
+Google Chrome Canary.app
+Google Chrome.app
+JupyterLab.app
+Keynote.app
+LICEcap.app
+Maccy.app
+Numbers.app
+OBS.app
+Pages.app
+PowerShell-preview.app
+PowerShell.app
+Python 3.11/IDLE.app
+Python 3.11/Python Launcher.app
+Rectangle.app
+Safari.app
+Slack.app
+Spotify.app
+Transmission.app
+VLC.app
+Visual Studio Code.app
+Wireshark.app
+Xcode.app
+iMovie.app
+zoom.us.app
