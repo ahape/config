@@ -32,6 +32,6 @@ endfunction
 function! GitBranch()
   let l:dir = expand('%:p:h')
   let l:cmd = 'git -C ' . fnameescape(l:dir) . ' branch --show-current'
-  let l:branch = system(l:cmd . ' 2> ' . (has('win32') ? '$null' : '/dev/null'))
+  let l:branch = system(l:cmd . ' 2> ' . (has('win32') ? '`$null' : '/dev/null'))
   echo substitute(l:branch, '\r\?\n\?$', '', '')
 endfunction
