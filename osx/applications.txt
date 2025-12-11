@@ -1,0 +1,28 @@
+[34mDiscord.app[39;49m[0m
+[34mExpressVPN.app[39;49m[0m
+[34mFiddler Everywhere.app[39;49m[0m
+[34mFirefox.app[39;49m[0m
+[34mGarageBand.app[39;49m[0m
+[34mGoogle Chrome Canary.app[39;49m[0m
+[34mGoogle Chrome.app[39;49m[0m
+[34miMovie.app[39;49m[0m
+[34mJupyterLab.app[39;49m[0m
+[34mKeynote.app[39;49m[0m
+[34mLICEcap.app[39;49m[0m
+[34mMaccy.app[39;49m[0m
+[34mNumbers.app[39;49m[0m
+[34mOBS.app[39;49m[0m
+[34mPages.app[39;49m[0m
+[34mPowerShell-preview.app[39;49m[0m
+[34mPowerShell.app[39;49m[0m
+[34mRectangle.app[39;49m[0m
+[35mSafari.app[39;49m[0m
+[34mSlack.app[39;49m[0m
+[34mSpotify.app[39;49m[0m
+[34mTransmission.app[39;49m[0m
+[34mUtilities[39;49m[0m
+[34mVisual Studio Code.app[39;49m[0m
+[34mVLC.app[39;49m[0m
+[34mWireshark.app[39;49m[0m
+[34mXcode.app[39;49m[0m
+[34mzoom.us.app[39;49m[0m
