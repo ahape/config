@@ -1,49 +1,38 @@
 runtime functions.vim
-
-set number
-set guicursor=c:block
-" Indentation related
-set expandtab
-"set tabstop=2 shiftwidth=2
-set tabstop=4 shiftwidth=4
-set autoindent
-" Search related
-set smartcase
-set ignorecase
+runtime augroups.vim
 
 colorscheme default
 
-" Otherwise Python will be indented 4 spaces and pretty much impossible to
-" override
+" Otherwise Python will be indented 4 spaces and pretty much impossible to override
 let g:python_recommended_style=0
+
 " Abide to .editorconfig files
 let g:editorconfig = v:true
 
-" Use git grep instead of default grep program.
-" Use 'vimgrep' if outside of a git repo or searching non-checked-in code
-set grepprg=git\ grep\ -n\ $*
+" One-time setup for the Windows shell pipe (doesn't need to change per buffer)
+if has('win32')
+  set shellpipe=>%s\ 2>&1
+endif
 
-" A simple statusline without blocking system calls on every buffer read
-set statusline=%<%f\ %h%m%r%=%-14.(%l,%c%V%)\ %P
+set number expandtab autoindent smartcase ignorecase
 
-autocmd FileType cs,csx setlocal sw=4 ts=4
-autocmd FileType rst setlocal ts=3 sw=3
-autocmd FileType text,txt setlocal tw=80 ts=2 sw=2
-autocmd FileType javascript,typescript,html,css setlocal sw=4 ts=4
+" Search related
+set guicursor=c:block
 
-" Has the quickfix window show up immediately instead of previewing results
-" first
-autocmd QuickFixCmdPost [^l]* cwindow
+" Standard file treatment
+set tabstop=2 shiftwidth=2
+
+" Allows `gf` on filenames with line/col info appended (e.g. file.cs:1: ...)
+set includeexpr=substitute(v:fname,':.*','','g')
 
 " Ctrl+C a visual block as if it was highlighted text (Windows)
 vnoremap <C-c> "*y
+
+" Common command typos
 cabbrev w' w
 cabbrev w] w
 cabbrev we w
 cabbrev B b
 
 " Easy escape rope
-command Q quitall!
-
-" Allows `gf` on filenames with line/col info appended (e.g. file.cs:1: ...)
-set includeexpr=substitute(v:fname,':.*','','g')
+command! Q quitall!
