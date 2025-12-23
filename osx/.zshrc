@@ -12,3 +12,12 @@ zstyle ':completion:*:match:*' matcher 'm:{a-zA-Z}={A-Za-z}'
 
 setopt NO_CASE_GLOB
 setopt GLOB_COMPLETE
+
+HISTFILE=~/.zsh_history   # Where the history file will be saved
+HISTSIZE=10000            # How many lines of history to keep in memory
+SAVEHIST=10000            # How many lines of history to save to the HISTFILE
+setopt HIST_IGNORE_DUPS   # Don't record a command if it was the last one typed
+setopt HIST_IGNORE_SPACE  # Don't record commands starting with a space
+setopt SHARE_HISTORY      # Share history between all active sessions
+setopt APPEND_HISTORY     # Append to history file rather than overwriting
+bindkey '^R' history-incremental-search-backward
