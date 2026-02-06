@@ -10,3 +10,13 @@ Run this to reinstall everything in Brewfile
 brew bundle --file=Brewfile
 ```
 
+### Misc
+
+Kotlin compiles to a .jar file, which requires a Java Runtime (JVM) to execute.
+macOS has a built-in "locator" tool for Java, but it only looks in the
+/Library/Java/JavaVirtualMachines/ folder. Homebrew installs OpenJDK in a
+different location (/opt/homebrew/...), so macOS can't find it.
+
+```sh
+sudo ln -sfn /opt/homebrew/opt/openjdk/libexec/openjdk.jdk /Library/Java/JavaVirtualMachines/openjdk.jdk
+```
