@@ -208,17 +208,11 @@ function Update-CommunityThemes {
             @() 
         }
         
-        $Settings.schemes = $response
+        $Settings.schemes = $response | Where {
+            $_.name -notmatch "light"
+        }
         
-        $newThemes = $Settings.schemes `
-            | Select-Object -ExpandProperty name `
-            | Where-Object {
-                if ($_.Contains("Light")) {
-                    Write-Host "Skipping light theme: $_"
-                    return $false
-                }
-                return $true
-            }
+        $newThemes = $Settings.schemes | Select-Object -ExpandProperty name
         $added = $newThemes | Where-Object { $_ -notin $oldThemes }
         
         Write-ColoredOutput "✓ Total themes available: $($newThemes.Count)" -Color Green
