@@ -66,4 +66,9 @@ if ($Context) {
   $pythonArgs += "--context"
 }
 
-& $pythonExe @pythonArgs
+try {
+    Push-Location $sourceRoot
+    & $pythonExe @pythonArgs
+} finally {
+    Pop-Location
+}
