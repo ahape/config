@@ -3,20 +3,28 @@
 
 eval "$(/opt/homebrew/bin/brew shellenv)"
 
-# Add own custom executables
-export PATH="$PATH:/Users/alanhape/Commands"
+# 1. Ensure the path array cannot contain duplicates
+typeset -U path
 
-# Add .NET Core SDK tools
-export PATH="$PATH:/Users/alanhape/.dotnet/tools"
+# 2. Define your custom paths
+paths_to_add=(
+  "$HOME/.dotnet/tools"
+  "$HOME/.opencode/bin"
+  "$HOME/Projects/llmchat/bin"
+  "/usr/local/microsoft/powershell/7"
+)
+# 3. Add valid directories to the PATH
+# switch 'path+=...' to 'path=(... $path)' if you want these to have higher priority than system paths
+for dir in $paths_to_add; do
+  [ -d "$dir" ] && path+=("$dir")
+done
 
-# Add powershell
-export PATH="$PATH:/usr/local/microsoft/powershell/7"
+unset paths_to_add
 
-# Add Chromium build tools
-#export PATH="$PATH:/Users/alanhape/Projects/chromium-workspace/depot_tools"
-
-# Add wireshark executables
-#export PATH="$PATH:/Applications/Wireshark.app/Contents/MacOS/"
+# Load secrets if the file exists
+if [[ -f "$HOME/.zprofile.secrets" ]]; then
+  source "$HOME/.zprofile.secrets"
+fi
 
 export EDITOR=nvim
 
