@@ -1,1 +1,1 @@
-autocmd BufNewFile,BufRead *.2do set filetype=2do tw=80
+autocmd BufNewFile,BufRead *.2do set filetype=2do
