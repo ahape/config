@@ -3,6 +3,8 @@ $global:Repo = 'C:\src\projects'
 
 # Aliases
 Set-Alias -Name vi -Value vim -ErrorAction Ignore
+New-Alias -Name lsf -Value Git-LsFiles
+New-Alias -Name gshow -Value Git-Show
 
 # Lazy load custom modules. Requires the first invocation to be without auto-completed anything
 $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
