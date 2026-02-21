@@ -1,5 +1,10 @@
-alias ls="ls --color"
-alias dir="ls -l --color"
+if ls --color > /dev/null 2>&1; then
+  alias ls="ls --color"
+  alias dir="ls -l --color"
+else
+  alias ls="ls -G"
+  alias dir="ls -l -G"
+fi
 alias py="python3"
 #
 # zsh 5.9 (arm64-apple-darwin)

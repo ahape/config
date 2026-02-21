@@ -1,7 +1,13 @@
 # .zprofile runs once at login (e.g., opening a terminal)
 # Use .zprofile for environment variables (like PATH via eval "$(brew shellenv)")
 
-eval "$(/opt/homebrew/bin/brew shellenv)"
+if [ -x "/opt/homebrew/bin/brew" ]; then
+  eval "$(/opt/homebrew/bin/brew shellenv)"
+elif [ -x "/usr/local/bin/brew" ]; then
+  eval "$(/usr/local/bin/brew shellenv)"
+elif [ -x "/home/linuxbrew/.linuxbrew/bin/brew" ]; then
+  eval "$(/home/linuxbrew/.linuxbrew/bin/brew shellenv)"
+fi
 
 # 1. Ensure the path array cannot contain duplicates
 typeset -U path
