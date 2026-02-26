@@ -5,7 +5,7 @@ function prompt {
   $path  = $PWD.Path -replace [regex]::Escape($HOME), '~'
   $parts = $path -split '[/\\]'
   if ($parts.Count -gt 3) {
-    $path = '…\' + ($parts | Select-Object -Last 3) -join '\'
+    $path = '…\' + [string]::Join("\", ($parts | Select-Object -Last 3))
   }
   # Git branch (silent if not a repo)
   $branch = ''
@@ -20,6 +20,19 @@ function prompt {
   )))
   return "PS> "
 }
+
+# PSReadLine quality-of-life
+Set-PSReadLineOption -PredictionSource    History
+Set-PSReadLineOption -PredictionViewStyle ListView
+Set-PSReadLineOption -EditMode            Windows
+Set-PSReadLineOption -Colors @{
+  Command            = "`e[96m"   # bright cyan
+  Parameter          = "`e[90m"   # dark grey
+  String             = "`e[93m"   # yellow
+  Comment            = "`e[32m"   # green
+  InlinePrediction   = "`e[90m"   # dark grey ghost text
+}
+
 if (Get-Module PSReadLine) {
   # Window title after each command
   Set-PSReadLineKeyHandler -Key Enter -ScriptBlock {
@@ -35,8 +48,8 @@ if (Get-Module PSReadLine) {
   # Ctrl+O -- inject a random-scheme profile & open a new tab
   Set-PSReadLineKeyHandler -Chord 'Ctrl+o' -ScriptBlock {
     [Microsoft.PowerShell.PSConsoleReadLine]::RevertLine()
-    $settingsPath = "C:\Users\AlanHape\AppData\Local\Packages\" +
-                    "Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
+    $profilePath = "$HOME\source\repos\config\windows\terminal\PowershellProfile.ps1"
+    $settingsPath = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
     $maxProfiles   = 10
     $profilePrefix = "Random-"
     try {
@@ -59,9 +72,14 @@ if (Get-Module PSReadLine) {
       $newProfile = [PSCustomObject]@{
         guid        = $newGuid
         name        = $newName
-        commandline = "powershell.exe"
+        commandline = "pwsh.exe -NoExit -File $profilePath"
         colorScheme = $schemeName
         hidden      = $false
+        cursorShape = "filledBox"
+        font        = [PSCustomObject]@{
+          face = "Consolas"
+          size = 13
+        }
       }
       $settings.profiles.list += $newProfile
       $settings | ConvertTo-Json -Depth 99 | Set-Content $settingsPath -Encoding UTF8
@@ -73,17 +91,6 @@ if (Get-Module PSReadLine) {
       Write-Host -ForegroundColor Red "`n[ERROR] $_"
     }
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("")
-  }
-  # PSReadLine quality-of-life
-  Set-PSReadLineOption -PredictionSource    History
-  Set-PSReadLineOption -PredictionViewStyle ListView
-  Set-PSReadLineOption -EditMode            Windows
-  Set-PSReadLineOption -Colors @{
-    Command            = "`e[96m"   # bright cyan
-    Parameter          = "`e[90m"   # dark grey
-    String             = "`e[93m"   # yellow
-    Comment            = "`e[32m"   # green
-    InlinePrediction   = "`e[90m"   # dark grey ghost text
   }
 }
 # Welcome banner
