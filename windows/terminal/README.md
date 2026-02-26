@@ -17,3 +17,7 @@ cp $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState
 cp settings.json $env:LOCALAPPDATA\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json
 ```
 4. Restart your Windows Terminal to see the restored settings.
+
+## How to make `wt.exe` available
+
+Add to your PATH `C:\Program Files\WindowsApps\Microsoft.WindowsTerminal_1.23.20211.0_x64__8wekyb3d8bbwe`
