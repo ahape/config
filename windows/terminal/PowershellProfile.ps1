@@ -54,12 +54,14 @@ if (Get-Module PSReadLine) {
     $profilePrefix = "Random-"
     try {
       Write-Host -ForegroundColor Cyan "`n[HACK] Reading settings.json..."
+      [Microsoft.PowerShell.PSConsoleReadLine]::AddLine()
       $settings         = Get-Content $settingsPath -Raw | ConvertFrom-Json
       $generatedProfiles = @($settings.profiles.list | Where-Object { $_.name -like "$profilePrefix*" })
       # Rotate out oldest profiles when at the limit
       while ($generatedProfiles.Count -ge $maxProfiles) {
         $oldest = $generatedProfiles[0]
         Write-Host -ForegroundColor DarkGray "[CLEANUP] Rotating out: '$($oldest.name)'"
+        [Microsoft.PowerShell.PSConsoleReadLine]::AddLine()
         $settings.profiles.list = @($settings.profiles.list | Where-Object { $_.guid -ne $oldest.guid })
         $generatedProfiles       = @($settings.profiles.list | Where-Object { $_.name -like "$profilePrefix*" })
       }
@@ -84,13 +86,17 @@ if (Get-Module PSReadLine) {
       $settings.profiles.list += $newProfile
       $settings | ConvertTo-Json -Depth 99 | Set-Content $settingsPath -Encoding UTF8
       Write-Host -ForegroundColor Green  "[HACK] Injected profile : '$newName' ($schemeName)"
+      [Microsoft.PowerShell.PSConsoleReadLine]::AddLine()
       Write-Host -ForegroundColor Gray   "[HACK] Waiting for Terminal to reload..."
+      [Microsoft.PowerShell.PSConsoleReadLine]::AddLine()
       Start-Sleep -Milliseconds 600
       Start-Process "wt.exe" -ArgumentList "-w 0 nt -p `"$newGuid`""
     } catch {
       Write-Host -ForegroundColor Red "`n[ERROR] $_"
+      [Microsoft.PowerShell.PSConsoleReadLine]::AddLine()
     }
     [Microsoft.PowerShell.PSConsoleReadLine]::Insert("")
+    [Microsoft.PowerShell.PSConsoleReadLine]::AcceptLine()
   }
 }
 # Welcome banner
