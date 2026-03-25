@@ -54,6 +54,24 @@ link_file() {
     ln -s "$src" "$dest"
 }
 
+link_directory_contents() {
+    local src_dir=$1
+    local dest_dir=$2
+    local entry
+
+    if [ ! -d "$src_dir" ]; then
+        return
+    fi
+
+    mkdir -p "$dest_dir"
+
+    shopt -s nullglob
+    for entry in "$src_dir"/*; do
+        link_file "$entry" "$dest_dir/$(basename "$entry")"
+    done
+    shopt -u nullglob
+}
+
 filter_available_packages() {
     local available_packages=()
     local missing_packages=()
@@ -125,6 +143,7 @@ fi
 echo "Setting up dotfiles from common/..."
 
 mkdir -p "$HOME/.config"
+mkdir -p "$HOME/.local/share/nvim/site"
 mkdir -p "$HOME/.nuget/NuGet"
 
 link_file "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
@@ -136,6 +155,8 @@ link_file "$DOTFILES_DIR/git/.gitignore_template" "$HOME/.gitignore_template"
 link_file "$DOTFILES_DIR/editorconfig/.editorconfig" "$HOME/.editorconfig"
 
 link_file "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
+link_directory_contents "$DOTFILES_DIR/nvim/ftdetect" "$HOME/.local/share/nvim/site/ftdetect"
+link_directory_contents "$DOTFILES_DIR/nvim/syntax" "$HOME/.local/share/nvim/site/syntax"
 link_file "$DOTFILES_DIR/mgba" "$HOME/.config/mgba"
 
 link_file "$DOTFILES_DIR/nuget/nuget.config" "$HOME/.nuget/NuGet/NuGet.Config"
