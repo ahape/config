@@ -1,77 +1,64 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
-    "actions": [
-        {
-            "command": {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "id": "User.splitPane.A6751878"
-        },
-        {
-            "command": "find",
-            "id": "User.find"
-        },
-        {
-            "command": {
-                "action": "newWindow"
-            },
-            "id": "User.newWindow.5DEADB41"
-        },
-        {
-            "command": "paste",
-            "id": "User.paste"
-        },
-        {
-            "command": {
-                "action": "newTab"
-            },
-            "id": "User.newTab.5DEADB41"
-        },
-        {
-            "command": {
-                "action": "copy",
-                "singleLine": false
-            },
-            "id": "User.copy.644BA8F2"
-        }
-    ],
+    "actions": [],
     "centerOnLaunch": true,
+    "confirmCloseAllTabs": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
     "defaultProfile": "{d771446f-9604-4f4b-aac4-688f4e38622d}",
     "experimental.detectURLs": true,
     "firstWindowPreference": "persistedWindowLayout",
     "newTabPosition": "afterCurrentTab",
+    "showAdminShield": true,
+    "showTerminalTitleInTitlebar": true,
     "snapToGridOnResize": true,
     "tabSwitcherMode": "mru",
     "tabWidthMode": "compact",
+    "windowingBehavior": "useExisting",
     "keybindings": [
         {
-            "id": "User.paste",
+            "command": "paste",
             "keys": "ctrl+v"
         },
         {
-            "id": "User.find",
+            "command": "find",
             "keys": "ctrl+shift+f"
         },
         {
-            "id": "User.newWindow.5DEADB41",
+            "command": "newWindow",
             "keys": "ctrl+n"
         },
         {
-            "id": "User.copy.644BA8F2",
+            "command": {
+                "action": "copy",
+                "singleLine": false
+            },
             "keys": "ctrl+c"
         },
         {
-            "id": "User.newTab.5DEADB41",
+            "command": "newTab",
             "keys": "ctrl+t"
         },
         {
-            "id": "User.splitPane.A6751878",
+            "command": {
+                "action": "splitPane",
+                "split": "auto",
+                "splitMode": "duplicate"
+            },
             "keys": "alt+shift+d"
+        },
+        {
+            "command": "commandPalette",
+            "keys": "ctrl+shift+p"
+        },
+        {
+            "command": "toggleFocusMode",
+            "keys": "f11"
+        },
+        {
+            "command": "quakeMode",
+            "keys": "alt+`"
         },
         {
             "id": null,
@@ -93,38 +80,36 @@
             "autoMarkPrompts": true,
             "bellStyle": "none",
             "closeOnExit": "graceful",
+            "cursorShape": "filledBox",
+            "experimental.rainbowSuggestions": true,
+            "experimental.repositionCursorWithMouse": true,
+            "font": {
+                "face": "Consolas",
+                "size": 13
+            },
             "historySize": 32000,
-            "showMarksOnScrollbar": true
+            "intenseTextStyle": "bold",
+            "opacity": 90,
+            "showMarksOnScrollbar": true,
+            "startingDirectory": "c:/src/projects",
+            "useAcrylic": true
         },
         "list": [
             {
                 "colorScheme": "SleepyHollow",
                 "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "cursorShape": "filledBox",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                },
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": true,
-                "intenseTextStyle": "bold",
                 "name": "Prompt1",
                 "opacity": 100,
-                "startingDirectory": "c:/src/projects",
                 "useAcrylic": false
             },
             {
                 "colorScheme": "Laser",
                 "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "cursorShape": "filledBox",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                },
                 "guid": "{e6adca5d-c09a-46f4-9d1b-1cbab76ff385}",
                 "hidden": false,
-                "name": "Prompt2",
-                "startingDirectory": "c:/src/projects"
+                "name": "Prompt2"
             },
             {
                 "colorScheme": "Ubuntu (modified)",
@@ -137,132 +122,72 @@
             {
                 "guid": "{c38506cd-decb-47da-bfa2-3c4cd3cc28fa}",
                 "name": "Random-Japanesque-607",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Japanesque",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{0b7e8c92-37d7-447f-a375-21abae9079a5}",
                 "name": "Random-OneStar-953",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "OneStar",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{d771446f-9604-4f4b-aac4-688f4e38622d}",
                 "name": "Random-nord-878",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "nord",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{931abc70-95ff-4051-9ee8-b8a4fa0f5cd9}",
                 "name": "Random-Solarized Darcula-833",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Solarized Darcula",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{1a2405b9-5ed6-46a8-875e-7b87d81f12d1}",
                 "name": "Random-Rippedcasts-904",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Rippedcasts",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{3872eb4e-ecc4-4970-b46c-e0d57514f6a9}",
                 "name": "Random-Breeze-671",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Breeze",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{eaceb909-9365-4a60-9816-678497609162}",
                 "name": "Random-tokyonight-515",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "tokyonight",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{43705da8-d68c-449a-9c45-508b563b4717}",
                 "name": "Random-Sonoran Gothic-649",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Sonoran Gothic",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{4838233c-cc9d-48e8-a915-2dd8847d00fe}",
                 "name": "Random-Mathias-132",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Mathias",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             },
             {
                 "guid": "{e6c16b2c-1d81-4457-9291-6bc2eb43f25b}",
                 "name": "Random-Rose Pine-900",
-                "commandline": "pwsh.exe -NoExit -File C:\\Users\\AlanHape\\source\\repos\\config\\windows\\terminal\\PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Rose Pine",
-                "hidden": false,
-                "cursorShape": "filledBox",
-                "startingDirectory": "c:/src/projects",
-                "font": {
-                    "face": "Consolas",
-                    "size": 13
-                }
+                "hidden": false
             }
         ]
     },
