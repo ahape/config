@@ -57,3 +57,14 @@ function Get-PromptInfo {
   }
   return @{ Path = $path; Branch = $branch }
 }
+
+function Initialize-LazyModuleImports {
+  $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
+    param($command)
+    if ($command -in 'Invoke-LLM', 'Ask-LLM', 'Show-Markdown', 'Render-Markdown') {
+      $ExecutionContext.InvokeCommand.PreCommandLookupAction = $null
+        Import-Module (Join-Path $HOME 'source\repos\llmchat\Invoke-LLM.psm1') -ErrorAction SilentlyContinue
+        Import-Module (Join-Path $HOME 'source\repos\markterm\Show-Markdown.psm1') -ErrorAction SilentlyContinue
+    }
+  }
+}
