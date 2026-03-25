@@ -8,7 +8,9 @@ function Rotate-DefaultProfile {
   $settingsPath = "$HOME\AppData\Local\Packages\Microsoft.WindowsTerminal_8wekyb3d8bbwe\LocalState\settings.json"
   try {
     $settings = Get-Content $settingsPath -Raw | ConvertFrom-Json
-    $profiles = @($settings.profiles.list | Where-Object { -not $_.hidden })
+    $profiles = @($settings.profiles.list | Where-Object {
+      -not $_.hidden -and $_.source -ne "Microsoft.WSL"
+    })
     if ($profiles.Count -lt 2) { return }
     $idx = -1
     for ($i = 0; $i -lt $profiles.Count; $i++) {
