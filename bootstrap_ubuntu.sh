@@ -89,6 +89,45 @@ filter_available_packages() {
     MISSING_PACKAGES=("${missing_packages[@]}")
 }
 
+install_nvm() {
+    local nvm_dir="$HOME/.nvm"
+    local nvm_script="$nvm_dir/nvm.sh"
+    local nvm_version="v25.8.2"
+
+    if [ ! -s "$nvm_script" ]; then
+        echo "Installing nvm $nvm_version..."
+        curl -fsSL "https://raw.githubusercontent.com/nvm-sh/nvm/$nvm_version/install.sh" | bash
+    else
+        echo "nvm already installed; skipping download."
+    fi
+
+    if [ -s "$nvm_script" ]; then
+        export NVM_DIR="$nvm_dir"
+        # shellcheck source=/dev/null
+        . "$nvm_script"
+    else
+        echo "nvm installation failed; $nvm_script not found." >&2
+        exit 1
+    fi
+}
+
+install_latest_node_with_nvm() {
+    if ! command -v nvm >/dev/null 2>&1; then
+        echo "nvm command not found. Did install_nvm run?" >&2
+        exit 1
+    fi
+
+    echo "Installing latest Node.js release via nvm..."
+    if nvm ls node >/dev/null 2>&1; then
+        nvm install node --reinstall-packages-from=node
+    else
+        nvm install node
+    fi
+    nvm alias default node
+    nvm use node >/dev/null
+    echo "Active Node.js version: $(node --version)"
+}
+
 echo "Updating apt repositories and installing packages..."
 sudo apt-get update
 
@@ -108,7 +147,6 @@ extra_packages=(
     fd-find
     fzf
     jq
-    nodejs
     python3
     python3-pip
     ripgrep
@@ -131,6 +169,9 @@ fi
 if [ "${#MISSING_PACKAGES[@]}" -gt 0 ]; then
     echo "Skipping packages not available from the current apt sources: ${MISSING_PACKAGES[*]}"
 fi
+
+install_nvm
+install_latest_node_with_nvm
 
 zsh_path="$(command -v zsh)"
 current_shell="$(getent passwd "$USER" | cut -d: -f7)"
