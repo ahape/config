@@ -16,15 +16,10 @@ $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
   }
 }
 
-# Functions
+. "$PSScriptRoot\_Helpers.ps1"
+
 function prompt {
-  $path = $pwd.Path
-  $parts = $path.Split([IO.Path]::DirectorySeparatorChar)
-
-  if ($parts.Count -gt 2) {
-    $lastTwo = $parts[-2..-1] -join '\'
-    $path = "..\$lastTwo"
-  }
-
-  "PS $path> "
+  $info = Get-PromptInfo
+  Write-Host "$($info.Path) $($info.Branch)"
+  return "PS> "
 }
