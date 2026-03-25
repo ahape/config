@@ -1,52 +1,76 @@
 #!/bin/bash
 
-# Exit immediately if a command exits with a non-zero status
-set -e
+set -euo pipefail
 
 echo "Starting Ubuntu Bootstrap..."
 
-# 1. Update and install packages
-echo "Updating apt repositories and installing packages..."
-sudo apt-get update
-sudo apt-get install -y zsh tmux screen neovim git curl software-properties-common build-essential
+SCRIPT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
+DOTFILES_DIR="$SCRIPT_DIR/common"
 
-# Change default shell to zsh
-if [ "$SHELL" != "/usr/bin/zsh" ] && [ "$SHELL" != "/bin/zsh" ]; then
-    echo "Changing default shell to zsh..."
-    chsh -s $(which zsh) || echo "Failed to change shell. You may need to run 'chsh -s \$(which zsh)' manually."
+if [ ! -d "$DOTFILES_DIR" ]; then
+    echo "Could not find dotfiles directory: $DOTFILES_DIR" >&2
+    exit 1
 fi
 
-# 2. Setup Dotfiles
-echo "Setting up dotfiles from common/..."
-# Ensure we get the absolute path to the common directory
-DOTFILES_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/common" && pwd)"
+next_backup_path() {
+    local dest=$1
+    local backup="${dest}.backup"
+    local index=1
 
-# Helper function to create symlinks
+    while [ -e "$backup" ] || [ -L "$backup" ]; do
+        backup="${dest}.backup.${index}"
+        index=$((index + 1))
+    done
+
+    printf '%s\n' "$backup"
+}
+
 link_file() {
     local src=$1
     local dest=$2
-    
-    # If the destination is already a symlink pointing to our source, skip
-    if [ -L "$dest" ] && [ "$(readlink "$dest")" = "$src" ]; then
-        echo "Already linked: $dest"
-        return
+    local existing_target
+    local backup
+
+    if [ ! -e "$src" ]; then
+        echo "Source does not exist: $src" >&2
+        exit 1
     fi
 
-    # Backup existing file/directory or symlink
-    if [ -e "$dest" ] || [ -L "$dest" ]; then
-        echo "Backing up existing $dest to ${dest}.backup"
-        mv "$dest" "${dest}.backup"
+    if [ -L "$dest" ]; then
+        existing_target="$(readlink -f "$dest" || true)"
+        if [ "$existing_target" = "$src" ]; then
+            echo "Already linked: $dest"
+            return
+        fi
     fi
-    
+
+    if [ -e "$dest" ] || [ -L "$dest" ]; then
+        backup="$(next_backup_path "$dest")"
+        echo "Backing up existing $dest to $backup"
+        mv "$dest" "$backup"
+    fi
+
     echo "Linking $src -> $dest"
     ln -s "$src" "$dest"
 }
 
-# Create necessary base directories
+echo "Updating apt repositories and installing packages..."
+sudo apt-get update
+sudo apt-get install -y zsh tmux screen neovim git curl software-properties-common build-essential
+
+zsh_path="$(command -v zsh)"
+current_shell="$(getent passwd "$USER" | cut -d: -f7)"
+
+if [ "$current_shell" != "$zsh_path" ]; then
+    echo "Changing default shell to zsh..."
+    chsh -s "$zsh_path" || echo "Failed to change shell. You may need to run 'chsh -s $zsh_path' manually."
+fi
+
+echo "Setting up dotfiles from common/..."
+
 mkdir -p "$HOME/.config"
 mkdir -p "$HOME/.nuget/NuGet"
 
-# Home Directory Dotfiles
 link_file "$DOTFILES_DIR/zsh/.zshrc" "$HOME/.zshrc"
 link_file "$DOTFILES_DIR/zsh/.zprofile" "$HOME/.zprofile"
 link_file "$DOTFILES_DIR/tmux/.tmux.conf" "$HOME/.tmux.conf"
@@ -55,11 +79,9 @@ link_file "$DOTFILES_DIR/git/.gitconfig" "$HOME/.gitconfig"
 link_file "$DOTFILES_DIR/git/.gitignore_template" "$HOME/.gitignore_template"
 link_file "$DOTFILES_DIR/editorconfig/.editorconfig" "$HOME/.editorconfig"
 
-# .config Directory Applications
 link_file "$DOTFILES_DIR/nvim" "$HOME/.config/nvim"
 link_file "$DOTFILES_DIR/mgba" "$HOME/.config/mgba"
 
-# NuGet Configuration
 link_file "$DOTFILES_DIR/nuget/nuget.config" "$HOME/.nuget/NuGet/NuGet.Config"
 
 echo "=========================================="
