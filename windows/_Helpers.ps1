@@ -91,6 +91,8 @@ function Rotate-DefaultProfile {
   $next = $profiles[($idx + 1) % $profiles.Count]
   if ($next.guid -eq $settings.defaultProfile) { return }
 
+  # Just update the line of `"defaultProfile": "<guid>"` so that no weird conflicts
+  # arise if this script function is invoked while hand-editing the settings file
   $updatedJson = [regex]::Replace(
     $settingsRaw,
     '("defaultProfile"\s*:\s*")([^"\\]+?)(")',
