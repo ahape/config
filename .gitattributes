@@ -51,6 +51,13 @@
 *.bash     text eol=lf
 *.fish     text eol=lf
 *.sh       text eol=lf
+*.zsh      text eol=lf
+.zshrc     text eol=lf
+.zprofile  text eol=lf
+# Common Unix config files that can break under CRLF
+.screenrc  text eol=lf
+.tmux.conf text eol=lf
+.editorconfig text eol=lf
 # These are explicitly windows files and should use crlf
 *.bat      text eol=crlf
 *.cmd      text eol=crlf

@@ -54,9 +54,65 @@ link_file() {
     ln -s "$src" "$dest"
 }
 
+filter_available_packages() {
+    local available_packages=()
+    local missing_packages=()
+    local package
+
+    for package in "$@"; do
+        if apt-cache show "$package" >/dev/null 2>&1; then
+            available_packages+=("$package")
+        else
+            missing_packages+=("$package")
+        fi
+    done
+
+    FILTERED_PACKAGES=("${available_packages[@]}")
+    MISSING_PACKAGES=("${missing_packages[@]}")
+}
+
 echo "Updating apt repositories and installing packages..."
 sudo apt-get update
-sudo apt-get install -y zsh tmux screen neovim git curl software-properties-common build-essential
+
+core_packages=(
+    build-essential
+    curl
+    git
+    neovim
+    screen
+    software-properties-common
+    tmux
+    zsh
+)
+
+extra_packages=(
+    bat
+    fd-find
+    fzf
+    jq
+    nodejs
+    python3
+    python3-pip
+    ripgrep
+    universal-ctags
+    unzip
+    wget
+    yq
+    eza
+)
+
+filter_available_packages "${core_packages[@]}"
+sudo apt-get install -y "${FILTERED_PACKAGES[@]}"
+
+filter_available_packages "${extra_packages[@]}"
+if [ "${#FILTERED_PACKAGES[@]}" -gt 0 ]; then
+    echo "Installing additional CLI packages..."
+    sudo apt-get install -y "${FILTERED_PACKAGES[@]}"
+fi
+
+if [ "${#MISSING_PACKAGES[@]}" -gt 0 ]; then
+    echo "Skipping packages not available from the current apt sources: ${MISSING_PACKAGES[*]}"
+fi
 
 zsh_path="$(command -v zsh)"
 current_shell="$(getent passwd "$USER" | cut -d: -f7)"

@@ -5,6 +5,15 @@ else
   alias ls="ls -G"
   alias dir="ls -l -G"
 fi
+
+if command -v batcat > /dev/null 2>&1 && ! command -v bat > /dev/null 2>&1; then
+  alias bat="batcat"
+fi
+
+if command -v fdfind > /dev/null 2>&1 && ! command -v fd > /dev/null 2>&1; then
+  alias fd="fdfind"
+fi
+
 alias py="python3"
 #
 # zsh 5.9 (arm64-apple-darwin)
