@@ -27,10 +27,8 @@ done
 
 unset paths_to_add
 
-# Load secrets if the file exists
-if [[ -f "$HOME/.zprofile.secrets" ]]; then
-  source "$HOME/.zprofile.secrets"
-fi
+# Load secrets and extended/personalized stuff if the file exists
+for f in "$HOME/.zprofile.secrets" "$HOME/.zprofile.local"; [[ -f $f ]] && source $f
 
 export EDITOR=nvim
 
