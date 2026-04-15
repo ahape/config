@@ -1,10 +1,6 @@
 {
   "env": { },
   "model": "opus[1m]",
-  "statusLine": {
-    "type": "command",
-    "command": "pwsh -NoProfile -ExecutionPolicy Bypass -File 'C:/src/brightmetrics-projects-plugin/scripts/Set-StatusLine.ps1'"
-  },
   "enabledPlugins": {},
   "extraKnownMarketplaces": {
     "brightmetrics-plugins": {

@@ -1,0 +1,7 @@
+# PowerShell: Exclude packaged modules
+*.zip
+
+# PowerShell: Exclude .NET assemblies from source
+*.dll
+
+.worktrees/
