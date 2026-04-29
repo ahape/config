@@ -1,5 +1,8 @@
 $script:lastRotation = [datetime]::MinValue
 $script:rotateInterval = [timespan]::FromMinutes(30)
+$script:gitAvailable = [bool](Get-Command git -ErrorAction SilentlyContinue)
+$script:_lastPwd = $null
+$script:_lastRepoRoot = $null
 
 function Get-WindowsTerminalSettingsPath {
   $packageRoot = Join-Path $HOME 'AppData\\Local\\Packages'
@@ -23,16 +26,22 @@ function Get-GitRepositoryRoot {
     [string]$Path = $PWD.Path
   )
 
+  if ($Path -eq $script:_lastPwd) { return $script:_lastRepoRoot }
+  $script:_lastPwd = $Path
+
   try {
     $current = (Resolve-Path -Path $Path).ProviderPath
   } catch {
+    $script:_lastRepoRoot = $null
     return $null
   }
 
+  $result = $null
   while ($current) {
     $gitEntry = Join-Path $current '.git'
     if (Test-Path $gitEntry) {
-      return $current
+      $result = $current
+      break
     }
 
     $parent = Split-Path $current -Parent
@@ -42,7 +51,8 @@ function Get-GitRepositoryRoot {
     $current = $parent
   }
 
-  return $null
+  $script:_lastRepoRoot = $result
+  return $result
 }
 
 function Get-GitBranchName {
@@ -148,7 +158,7 @@ function Get-PromptInfo {
   }
   # Git branch (silent if not a repo)
   $branch = ''
-  if (Get-Command git -ErrorAction SilentlyContinue) {
+  if ($script:gitAvailable) {
     $branch = Get-GitBranchName -Path $PWD.Path
   }
   return @{ Path = $path; Branch = $branch }
@@ -158,8 +168,16 @@ function Initialize-LazyModuleImports {
   $ExecutionContext.InvokeCommand.PreCommandLookupAction = {
     param($command)
 
-    $commands = @('Invoke-LLM', 'Ask-LLM', 'Show-Markdown', 'Render-Markdown')
-    if ($commands -notcontains $command) { return }
+    if ([string]::IsNullOrWhiteSpace($command)) { return }
+
+    $trimmed = $command.Trim()
+
+    if (
+          [string]::Compare($trimmed, 'Invoke-LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
+     -and [string]::Compare($trimmed, 'Ask-LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
+     -and [string]::Compare($trimmed, 'Show-Markdown', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
+     -and [string]::Compare($trimmed, 'Render-Markdown', [System.StringComparer]::OrdinalIgnoreCase) -ne 0
+    ) { return }
 
     $modules = @(
       @{ Description = 'llmchat'; Path = Join-Path $HOME 'source\repos\llmchat\Invoke-LLM.psm1' },
