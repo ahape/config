@@ -18,3 +18,5 @@ function prompt {
   Write-Host "$env:USERNAME@$env:COMPUTERNAME $($info.Path) $($info.Branch)"
   return "PS> "
 }
+
+Write-Host "Profile loaded: Windows Terminal ($(Get-Date -f 'ddd dd MMM yyyy HH:mm:ss.ffff'))"

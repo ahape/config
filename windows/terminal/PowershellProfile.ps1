@@ -14,5 +14,4 @@ if (Get-Module PSReadLine) {
   }
 }
 
-# Welcome banner
-Write-Host "$(Get-Date -f 'ddd dd MMM yyyy HH:mm')"
+Write-Host "Profile loaded: Windows Terminal ($(Get-Date -f 'ddd dd MMM yyyy HH:mm:ss.ffff'))"

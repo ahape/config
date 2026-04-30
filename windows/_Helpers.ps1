@@ -3,6 +3,7 @@ $script:rotateInterval = [timespan]::FromMinutes(30)
 $script:gitAvailable = [bool](Get-Command git -ErrorAction SilentlyContinue)
 $script:_lastPwd = $null
 $script:_lastRepoRoot = $null
+$script:_lastBranch = $null
 
 function Get-WindowsTerminalSettingsPath {
   $packageRoot = Join-Path $HOME 'AppData\\Local\\Packages'
@@ -60,8 +61,13 @@ function Get-GitBranchName {
     [string]$Path = $PWD.Path
   )
 
+  $lastRoot = $script:_lastRepoRoot
   $repoRoot = Get-GitRepositoryRoot -Path $Path
   if (-not $repoRoot) { return '' }
+
+  if ($repoRoot -eq $lastRoot) {
+    return $script:_lastBranch
+  }
 
   try {
     $branch = git -C $repoRoot rev-parse --abbrev-ref HEAD 2>$null
@@ -69,6 +75,7 @@ function Get-GitBranchName {
     $branch = ''
   }
 
+  $script:_lastBranch = $branch
   return $branch
 }
 
@@ -149,6 +156,7 @@ function Enable-RecentCommandAutocompleteDropdown {
   }
 }
 
+
 function Get-PromptInfo {
   # Current path. Abbreviate $HOME to ~, then keep last 3 segments
   $path  = $PWD.Path -replace [regex]::Escape($HOME), '~'
@@ -172,11 +180,10 @@ function Initialize-LazyModuleImports {
 
     $trimmed = $command.Trim()
 
-    if (
-          [string]::Compare($trimmed, 'Invoke-LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
-     -and [string]::Compare($trimmed, 'Ask-LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
-     -and [string]::Compare($trimmed, 'Show-Markdown', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
-     -and [string]::Compare($trimmed, 'Render-Markdown', [System.StringComparer]::OrdinalIgnoreCase) -ne 0
+    if (    [string]::Compare($trimmed, 'Invoke-LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
+       -and [string]::Compare($trimmed, 'Ask-LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
+       -and [string]::Compare($trimmed, 'Show-Markdown', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
+       -and [string]::Compare($trimmed, 'Render-Markdown', [System.StringComparer]::OrdinalIgnoreCase) -ne 0
     ) { return }
 
     $modules = @(
