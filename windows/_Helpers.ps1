@@ -65,9 +65,11 @@ function Get-GitBranchName {
   $repoRoot = Get-GitRepositoryRoot -Path $Path
   if (-not $repoRoot) { return '' }
 
+  <#
   if ($repoRoot -eq $lastRoot) {
     return $script:_lastBranch
   }
+  #>
 
   try {
     $branch = git -C $repoRoot rev-parse --abbrev-ref HEAD 2>$null
@@ -75,7 +77,7 @@ function Get-GitBranchName {
     $branch = ''
   }
 
-  $script:_lastBranch = $branch
+  #$script:_lastBranch = $branch
   return $branch
 }
 

@@ -45,3 +45,7 @@
   hooksPath = .githooks
 #  autocrlf = input # Mac
 #  autocrlf = true # Windows
+
+[rebase]
+	updateRefs = true
+
