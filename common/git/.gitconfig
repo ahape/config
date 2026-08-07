@@ -43,9 +43,16 @@
 [core]
   longpaths = true
   hooksPath = .githooks
+  editor = vim
 #  autocrlf = input # Mac
 #  autocrlf = true # Windows
 
 [rebase]
-	updateRefs = true
+  updateRefs = true
 
+[credential]
+  helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+[credential "https://dev.azure.com"]
+  useHttpPath = true
+[credential "https://github.com"]
+  username = ahape

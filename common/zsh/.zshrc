@@ -35,3 +35,9 @@ setopt HIST_IGNORE_SPACE  # Don't record commands starting with a space
 setopt SHARE_HISTORY      # Share history between all active sessions
 setopt APPEND_HISTORY     # Append to history file rather than overwriting
 bindkey '^R' history-incremental-search-backward
+
+# >>> grok installer >>>
+export PATH="$HOME/.grok/bin:$PATH"
+fpath=(~/.grok/completions/zsh $fpath)
+autoload -Uz compinit && compinit -C
+# <<< grok installer <<<
