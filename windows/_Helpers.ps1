@@ -191,6 +191,7 @@ function Initialize-LazyModuleImports {
     $modules = @(
       @{ Description = 'llmchat'; Path = Join-Path $HOME 'source\repos\llmchat\Invoke-LLM.psm1' },
       @{ Description = 'markterm'; Path = Join-Path $HOME 'source\repos\markterm\Show-Markdown.psm1' }
+      @{ Description = 'gitlab-tools'; Path = Join-Path $PSScriptRoot 'Scripts\_GitLabTools.psm1' }
     )
 
     $allLoaded = $true
