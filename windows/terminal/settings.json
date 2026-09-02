@@ -20,6 +20,7 @@
     "tabSwitcherMode": "mru",
     "tabWidthMode": "compact",
     "windowingBehavior": "useExisting",
+    "trimPaste": true,
     "keybindings": [
         {
             "command": "paste",
@@ -89,8 +90,8 @@
             "experimental.rainbowSuggestions": true,
             "experimental.repositionCursorWithMouse": true,
             "font": {
-                "face": "Consolas",
-                "size": 13
+                "face": "Cascadia Mono",
+                "size": 12
             },
             "historySize": 32000,
             "intenseTextStyle": "bold",
@@ -103,7 +104,7 @@
         "list": [
             {
                 "colorScheme": "SleepyHollow",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{0caa0dad-35be-5f56-a8ff-afceeeaa6101}",
                 "hidden": true,
                 "name": "Prompt1",
@@ -112,7 +113,7 @@
             },
             {
                 "colorScheme": "Laser",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{e6adca5d-c09a-46f4-9d1b-1cbab76ff385}",
                 "name": "Prompt2"
             },
@@ -126,61 +127,61 @@
             {
                 "guid": "{c38506cd-decb-47da-bfa2-3c4cd3cc28fa}",
                 "name": "Random-Japanesque-607",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Japanesque"
             },
             {
                 "guid": "{0b7e8c92-37d7-447f-a375-21abae9079a5}",
                 "name": "Random-OneStar-953",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "OneStar"
             },
             {
                 "guid": "{d771446f-9604-4f4b-aac4-688f4e38622d}",
                 "name": "Random-nord-878",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "nord"
             },
             {
                 "guid": "{931abc70-95ff-4051-9ee8-b8a4fa0f5cd9}",
                 "name": "Random-Solarized Darcula-833",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Solarized Darcula"
             },
             {
                 "guid": "{1a2405b9-5ed6-46a8-875e-7b87d81f12d1}",
                 "name": "Random-Rippedcasts-904",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Rippedcasts"
             },
             {
                 "guid": "{3872eb4e-ecc4-4970-b46c-e0d57514f6a9}",
                 "name": "Random-Breeze-671",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Breeze"
             },
             {
                 "guid": "{eaceb909-9365-4a60-9816-678497609162}",
                 "name": "Random-tokyonight-515",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "tokyonight"
             },
             {
                 "guid": "{43705da8-d68c-449a-9c45-508b563b4717}",
                 "name": "Random-Sonoran Gothic-649",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Sonoran Gothic"
             },
             {
                 "guid": "{4838233c-cc9d-48e8-a915-2dd8847d00fe}",
                 "name": "Random-Mathias-132",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Mathias"
             },
             {
                 "guid": "{e6c16b2c-1d81-4457-9291-6bc2eb43f25b}",
                 "name": "Random-Rose Pine-900",
-                "commandline": "pwsh.exe -NoExit -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "colorScheme": "Rose Pine"
             }
         ]
