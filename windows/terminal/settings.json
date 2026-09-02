@@ -17,8 +17,6 @@
     "showAdminShield": true,
     "showTerminalTitleInTitlebar": true,
     "snapToGridOnResize": true,
-    "tabSwitcherMode": "mru",
-    "tabWidthMode": "compact",
     "windowingBehavior": "useExisting",
     "trimPaste": true,
     "keybindings": [
