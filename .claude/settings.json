@@ -1,0 +1,16 @@
+{
+  "env": { },
+  "model": "opus[1m]",
+  "enabledPlugins": {},
+  "extraKnownMarketplaces": {
+    "brightmetrics-plugins": {
+      "source": {
+        "source": "github",
+        "repo": "brightmetrics/plugin-marketplace"
+      }
+    }
+  },
+  "effortLevel": "medium",
+  "autoUpdatesChannel": "latest",
+  "skipDangerousModePermissionPrompt": true
+}

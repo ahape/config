@@ -1,0 +1,58 @@
+[user]
+  name = Alan Hape
+  email = ahape@brightmetrics.com
+
+[help]
+  autocorrect = 1
+
+[push]
+  autoSetupRemote = true
+
+[grep]
+  fullName = true
+  lineNumber = true
+
+[log]
+  abbrevCommit = true
+
+[format]
+  pretty = oneline
+
+[alias]
+  pull-r = pull -r
+
+#[web]
+#  browser = chrome
+
+#[browser "chrome"]
+#  path = C:\\Program Files\\Google\\Chrome\\Application\\chrome.exe
+#  path = /Applications/Google Chrome.app
+
+[merge]
+  tool = code
+
+[mergetool "code"]
+  cmd = code --wait --merge $REMOTE $LOCAL $BASE $MERGED
+
+[diff]
+  tool = code
+
+[difftool "code"]
+  cmd = code --new-window --wait --diff $LOCAL $REMOTE
+
+[core]
+  longpaths = true
+  hooksPath = .githooks
+  editor = vim
+#  autocrlf = input # Mac
+#  autocrlf = true # Windows
+
+[rebase]
+  updateRefs = true
+
+[credential]
+  helper = /mnt/c/Program\\ Files/Git/mingw64/bin/git-credential-manager.exe
+[credential "https://dev.azure.com"]
+  useHttpPath = true
+[credential "https://github.com"]
+  username = ahape
