@@ -184,6 +184,7 @@ function Initialize-LazyModuleImports {
 
     if (    [string]::Compare($trimmed, 'Invoke-LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
        -and [string]::Compare($trimmed, 'Ask-LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
+       -and [string]::Compare($trimmed, 'LLM', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
        -and [string]::Compare($trimmed, 'Show-Markdown', [System.StringComparer]::OrdinalIgnoreCase) -ne 0 `
        -and [string]::Compare($trimmed, 'Render-Markdown', [System.StringComparer]::OrdinalIgnoreCase) -ne 0
     ) { return }
