@@ -3,7 +3,9 @@ if (Test-Path 'C:\src\projects') {
   $global:Repo = 'C:\src\projects'
 }
 
-. "$PSScriptRoot\_Helpers.ps1"
+if (Test-Path $configWindowsRoot) {
+  . "$configWindowsRoot\_Helpers.ps1"
+}
 
 # Aliases
 Set-Alias -Name vi -Value vim -ErrorAction Ignore
