@@ -1,3 +1,6 @@
+# Deduplicate PATH for non-login shells that inherit a PATH already modified by .zprofile
+typeset -U path; path=($path);
+
 if ls --color > /dev/null 2>&1; then
   alias ls="ls --color"
   alias dir="ls -l --color"

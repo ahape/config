@@ -37,6 +37,9 @@ if [[ -f "$HOME/.zprofile.secrets" ]]; then
   source "$HOME/.zprofile.secrets"
 fi
 
+# Deduplicate PATH for non-login shells that inherit a PATH already modified by .zprofile
+typeset -U path; path=($path);
+
 export EDITOR=nvim
 
 # See http://aperiodic.net/screen/title_examples
