@@ -8,7 +8,7 @@ Personal dotfiles and configuration repo for cross-platform use (macOS, Linux, W
 - **`osx/`** -- macOS-specific configs: Homebrew `Brewfile`, Rectangle window manager, application list.
 - **`windows/`** -- Windows-specific configs: PowerShell profiles, Windows Terminal settings, helper scripts, Chocolatey package list, SharpKeys (Caps Lock remapped to Ctrl).
 - **`bootstrap_ubuntu.sh`** -- Symlink installer for Linux/macOS. Links files from `common/` into the appropriate `$HOME` locations. Backs up existing files before overwriting. Does not install `~/.gitconfig`.
-- **`common/git/bootstrap_gitconfig.ps1`** -- Generates `~/.config/git/generated.gitconfig` and points `~/.gitconfig` at it. Required `-Platform` is `Mac`, `Windows`, or `WSL`.
+- **`common/git/bootstrap_gitconfig.ps1`** -- Generates `~/.config/git/generated.gitconfig` and points `~/.gitconfig` at it. Required `-Platform` is `Mac`, `Windows`, or `WSL`. Settings live in `common/git/config-settings.csv` (`key`, `value`, `env`; empty `env` is common to all platforms).
 
 ## Architecture Notes
 

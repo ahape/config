@@ -1,0 +1,40 @@
+key                                                                    , value                                                          , env
+user.name                                                              , Alan Hape                                                      , 
+user.email                                                             , ahape@brightmetrics.com                                        , 
+help.autocorrect                                                       , 1                                                              , 
+push.autoSetupRemote                                                   , true                                                           , 
+grep.fullName                                                          , true                                                           , 
+grep.lineNumber                                                        , true                                                           , 
+log.abbrevCommit                                                       , true                                                           , 
+status.short                                                           , true                                                           , 
+format.pretty                                                          , oneline                                                        , 
+alias.pull-r                                                           , pull -r                                                        , 
+web.browser                                                            , chrome                                                         , 
+merge.tool                                                             , code                                                           , 
+mergetool.code.cmd                                                     , "code --wait --merge $REMOTE $LOCAL $BASE $MERGED"             , 
+diff.tool                                                              , code                                                           , 
+difftool.code.cmd                                                      , "code --new-window --wait --diff $LOCAL $REMOTE"               , 
+core.longpaths                                                         , true                                                           , 
+core.hooksPath                                                         , .githooks                                                      , 
+core.editor                                                            , vim                                                            , 
+core.excludesfile                                                      , $HOME/.gitignore-global                                        , 
+rebase.updateRefs                                                      , true                                                           , 
+credential.https://dev.azure.com.useHttpPath                           , true                                                           , 
+credential.https://github.com.username                                 , ahape                                                          , 
+credential.https://github.com/ahape/.username                          , ahape                                                          , 
+credential.https://github.com/brightmetrics/.username                  , ahape                                                          , 
+credential.https://brightmetrics-staging.scm.azurewebsites.net.provider, generic                                                        , 
+credential.https://brightmetrics-testing.scm.azurewebsites.net.provider, generic                                                        , 
+filter.lfs.required                                                    , true                                                           , 
+filter.lfs.clean                                                       , git-lfs clean -- %f                                            , 
+filter.lfs.smudge                                                      , git-lfs smudge -- %f                                           , 
+filter.lfs.process                                                     , git-lfs filter-process                                         , 
+core.autocrlf                                                          , true                                                           , Windows
+browser.chrome.path                                                    , C:\Program Files\Google\Chrome\Application\chrome.exe          , Windows
+credential.helper                                                      , manager                                                        , Windows
+core.autocrlf                                                          , input                                                          , Mac
+browser.chrome.path                                                    , /Applications/Google Chrome.app/Contents/MacOS/Google Chrome   , Mac
+credential.helper                                                      , osxkeychain                                                    , Mac
+core.autocrlf                                                          , input                                                          , WSL
+browser.chrome.path                                                    , /mnt/c/Program Files/Google/Chrome/Application/chrome.exe      , WSL
+credential.helper                                                      , /mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe, WSL

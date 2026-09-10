@@ -25,6 +25,7 @@ function Set-Git {
     if ($LASTEXITCODE -ne 0) {
         throw "git config failed: $Key"
     }
+    Write-Verbose "Added: $Key -> $Value"
 }
 
 function Get-NextBackupPath {
@@ -68,66 +69,59 @@ function Test-AlreadyBootstrapped {
     return $current -eq $want
 }
 
+function ConvertTo-SettingValue {
+    param([Parameter(Mandatory)][AllowEmptyString()][string]$Value)
+
+    if ($Value.Contains('$HOME')) {
+        return ConvertTo-GitPath ($Value.Replace('$HOME', $HOME))
+    }
+    return $Value
+}
+
+$settingsFile = Join-Path $PSScriptRoot 'config-settings.csv'
+if (-not (Test-Path -LiteralPath $settingsFile)) {
+    throw "Settings file not found: $settingsFile"
+}
+
+$settings = @(Import-Csv -LiteralPath $settingsFile)
+if ($settings.Count -eq 0) {
+    throw "Settings file is empty: $settingsFile"
+}
+foreach ($name in @('key', 'value', 'env')) {
+    if (-not ($settings[0].PSObject.Properties.Name -contains $name)) {
+        throw "Settings file missing '$name' column: $settingsFile"
+    }
+}
+
 $gitDir = Split-Path -Parent $target
 New-Item -ItemType Directory -Force -Path $gitDir | Out-Null
 if (Test-Path -LiteralPath $target) {
     Remove-Item -LiteralPath $target -Force
 }
 
-Set-Git user.name 'Alan Hape'
-Set-Git user.email 'ahape@brightmetrics.com'
-
-Set-Git help.autocorrect '1'
-Set-Git push.autoSetupRemote 'true'
-Set-Git grep.fullName 'true'
-Set-Git grep.lineNumber 'true'
-Set-Git log.abbrevCommit 'true'
-Set-Git status.short 'true'
-Set-Git format.pretty 'oneline'
-Set-Git alias.pull-r 'pull -r'
-
-Set-Git web.browser 'chrome'
-
-Set-Git merge.tool 'code'
-Set-Git mergetool.code.cmd 'code --wait --merge $REMOTE $LOCAL $BASE $MERGED'
-Set-Git diff.tool 'code'
-Set-Git difftool.code.cmd 'code --new-window --wait --diff $LOCAL $REMOTE'
-
-Set-Git core.longpaths 'true'
-Set-Git core.hooksPath '.githooks'
-Set-Git core.editor 'vim'
-Set-Git core.excludesfile (ConvertTo-GitPath (Join-Path $HOME '.gitignore-global'))
-
-Set-Git rebase.updateRefs 'true'
-
-Set-Git 'credential.https://dev.azure.com.useHttpPath' 'true'
-Set-Git 'credential.https://github.com.username' 'ahape'
-Set-Git 'credential.https://github.com/ahape/.username' 'ahape'
-Set-Git 'credential.https://github.com/brightmetrics/.username' 'ahape'
-Set-Git 'credential.https://brightmetrics-staging.scm.azurewebsites.net.provider' 'generic'
-Set-Git 'credential.https://brightmetrics-testing.scm.azurewebsites.net.provider' 'generic'
-
-Set-Git filter.lfs.required 'true'
-Set-Git filter.lfs.clean 'git-lfs clean -- %f'
-Set-Git filter.lfs.smudge 'git-lfs smudge -- %f'
-Set-Git filter.lfs.process 'git-lfs filter-process'
-
-switch ($Platform) {
-    'Windows' {
-        Set-Git core.autocrlf 'true'
-        Set-Git browser.chrome.path 'C:\Program Files\Google\Chrome\Application\chrome.exe'
-        Set-Git credential.helper 'manager'
+$allowedEnvs = @('Mac', 'Windows', 'WSL')
+$applied = 0
+foreach ($row in $settings) {
+    $key = [string]$row.key
+    if ([string]::IsNullOrWhiteSpace($key)) {
+        continue
     }
-    'Mac' {
-        Set-Git core.autocrlf 'input'
-        Set-Git browser.chrome.path '/Applications/Google Chrome.app/Contents/MacOS/Google Chrome'
-        Set-Git credential.helper 'osxkeychain'
+    $key = $key.Trim()
+
+    $envName = ([string]$row.env).Trim()
+    if ($envName -and $envName -notin $allowedEnvs) {
+        throw "Unknown env '$envName' for key '$key'. Expected Mac, Windows, WSL, or empty."
     }
-    'WSL' {
-        Set-Git core.autocrlf 'input'
-        Set-Git browser.chrome.path '/mnt/c/Program Files/Google/Chrome/Application/chrome.exe'
-        Set-Git credential.helper '/mnt/c/Program Files/Git/mingw64/bin/git-credential-manager.exe'
+    if ($envName -and $envName -ne $Platform) {
+        continue
     }
+
+    Set-Git $key (ConvertTo-SettingValue ([string]$row.value))
+    $applied++
+}
+
+if ($applied -eq 0) {
+    throw "No settings applied from $settingsFile for platform $Platform"
 }
 
 $targetPosix = ConvertTo-GitPath $target
