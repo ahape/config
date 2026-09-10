@@ -83,13 +83,26 @@ if (-not (Test-Path -LiteralPath $settingsFile)) {
     throw "Settings file not found: $settingsFile"
 }
 
-$settings = @(Import-Csv -LiteralPath $settingsFile)
-if ($settings.Count -eq 0) {
+$rawSettings = @(Import-Csv -LiteralPath $settingsFile)
+if ($rawSettings.Count -eq 0) {
     throw "Settings file is empty: $settingsFile"
 }
+
+$column = @{}
+foreach ($name in $rawSettings[0].PSObject.Properties.Name) {
+    $column[$name.Trim().Trim('"')] = $name
+}
 foreach ($name in @('key', 'value', 'env')) {
-    if (-not ($settings[0].PSObject.Properties.Name -contains $name)) {
+    if (-not $column.ContainsKey($name)) {
         throw "Settings file missing '$name' column: $settingsFile"
+    }
+}
+
+$settings = foreach ($row in $rawSettings) {
+    [pscustomobject]@{
+        key   = ([string]$row.($column['key'])).Trim()
+        value = ([string]$row.($column['value'])).Trim()
+        env   = ([string]$row.($column['env'])).Trim()
     }
 }
 
