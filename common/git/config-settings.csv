@@ -37,5 +37,5 @@
 "browser.chrome.path"                                                     , "/Applications/Google Chrome.app/Contents/MacOS/Google Chrome"     , "Mac"
 "credential.helper"                                                       , "osxkeychain"                                                      , "Mac"
 "core.autocrlf"                                                           , "input"                                                            , "WSL"
-"browser.chrome.path"                                                     , "/mnt/c/Program Files/Google/Chrome/Application/chrome.exe"        , "WSL"
-"credential.helper"                                                       , "/mnt/c/Program\ Files/Git/mingw64/bin/git-credential-manager.exe" , "WSL"
+"browser.chrome.path"                                                     , "/mnt/c/Program\ Files/Google/Chrome/Application/chrome.exe"       , "WSL"
+"credential.helper"                                                       , "!/usr/bin/gh auth git-credential"                                 , "WSL"
