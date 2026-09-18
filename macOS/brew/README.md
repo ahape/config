@@ -3,7 +3,7 @@ This folder contains the `Brewfile`, which tracks all the packages installed via
 
 ## How to backup your currently installed Homebrew packages:
 1. Open the **Terminal** application.
-2. Navigate to this directory (`osx/brew`).
+2. Navigate to this directory (`macOS/brew`).
 3. Run the following command to overwrite the `Brewfile` with your currently installed packages:
 ```sh
 brew bundle dump --file=Brewfile --force
@@ -11,7 +11,7 @@ brew bundle dump --file=Brewfile --force
 
 ## How to install packages from this Brewfile on a new machine:
 1. Open the **Terminal** application.
-2. Navigate to this directory (`osx/brew`).
+2. Navigate to this directory (`macOS/brew`).
 3. Run the following command to install all listed packages:
 ```sh
 brew bundle --file=Brewfile
