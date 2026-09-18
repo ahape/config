@@ -16,7 +16,6 @@
 "diff.tool"                                                               , "code"                                                             , ""
 "difftool.code.cmd"                                                       , "code --new-window --wait --diff $LOCAL $REMOTE"                   , ""
 "core.longpaths"                                                          , "true"                                                             , ""
-"core.hooksPath"                                                          , ".githooks"                                                        , ""
 "core.editor"                                                             , "vim"                                                              , ""
 "core.excludesfile"                                                       , "$HOME/.gitignore-global"                                          , ""
 "rebase.updateRefs"                                                       , "true"                                                             , ""

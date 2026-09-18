@@ -1,0 +1,51 @@
+#!/bin/sh
+# Seed working-tree defaults once, after an index write (for example git add).
+# The new files remain unstaged so the user can review them.
+[ "$(git rev-parse --is-bare-repository)" = false ] || exit 0
+root=$(git rev-parse --show-toplevel) || exit 0
+# We stash info around this hook in .git/project-defaults.
+state=$(git rev-parse --git-path project-defaults) || exit 0
+[ -d "$state" ] || exit 0
+# Flag we use -- the existence of this 0-byte file.
+[ ! -f "$state/installed" ] || exit 0
+[ ! -f "$state/declined" ] || exit 0
+# Only consider this on a brand new repo (unborn HEAD).
+git rev-parse --verify -q HEAD >/dev/null && exit 0
+
+# Hooks may have redirected stdin. Use the terminal, or defer until one exists.
+( : <> /dev/tty ) 2>/dev/null || exit 0
+exec 3<> /dev/tty
+printf 'Add dot-files to new repo? [Y/n] ' >&3
+IFS= read -r answer <&3 || exit 0
+
+# MSYS/Windows terminals may deliver a trailing CR; strip it.
+cr=$(printf '\r')
+answer=${answer%"$cr"}
+
+case $answer in
+    [nN]|[nN][oO])
+        : > "$state/declined"
+        exit 0
+        ;;
+    ''|[yY]|[yY][eE][sS]) ;;
+    *) exit 0 ;;   # unrecognized: defer, ask again next time
+esac
+
+for name in editorconfig gitattributes gitignore; do
+    src="$state/$name"
+    target="$root/.$name"
+    [ -f "$src" ] || continue
+    # -e is false for broken symlinks, hence the extra -L test.
+    if [ ! -e "$target" ] && [ ! -L "$target" ]; then
+        # noclobber also protects against a file created concurrently;
+        # losing that race is fine, so only warn on real write failures.
+        if (set -C; cat "$src" > "$target") 2>/dev/null; then
+            printf 'created .%s\n' "$name" >&3
+        elif [ ! -e "$target" ] && [ ! -L "$target" ]; then
+            printf 'warning: could not create .%s\n' "$name" >&3
+        fi
+    fi
+done
+# Mark done even on partial failure so we never prompt in a loop.
+: > "$state/installed"
+exit 0
