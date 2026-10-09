@@ -1,66 +1,54 @@
 {
     "$help": "https://aka.ms/terminal-documentation",
     "$schema": "https://aka.ms/terminal-profiles-schema",
+    "actions": [],
     "alwaysShowTabs": false,
-    "compatibility.allowHeadless": true,
     "centerOnLaunch": true,
-    "confirmCloseAllTabs": false,
+    "compatibility.allowHeadless": true,
+    "compatibility.enableUnfocusedAcrylic": false,
     "copyFormatting": "none",
     "copyOnSelect": true,
+    "defaultProfile": "{1a2405b9-5ed6-46a8-875e-7b87d81f12d1}",
     "disableAnimations": true,
-    "defaultProfile": "{d771446f-9604-4f4b-aac4-688f4e38622d}",
     "experimental.detectURLs": true,
     "experimental.scrollToChangeOpacity": false,
     "experimental.scrollToZoom": false,
     "firstWindowPreference": "persistedWindowLayout",
-    "newTabPosition": "afterCurrentTab",
-    "showAdminShield": true,
-    "showTerminalTitleInTitlebar": true,
-    "snapToGridOnResize": true,
-    "windowingBehavior": "useExisting",
-    "trimPaste": true,
     "keybindings": [
         {
-            "command": "paste",
+            "id": "Terminal.PasteFromClipboard",
             "keys": "ctrl+v"
         },
         {
-            "command": "find",
+            "id": "Terminal.FindText",
             "keys": "ctrl+shift+f"
         },
         {
-            "command": "newWindow",
-            "keys": "ctrl+n"
-        },
-        {
-            "command": {
-                "action": "copy",
-                "singleLine": false
-            },
-            "keys": "ctrl+c"
-        },
-        {
-            "command": "newTab",
-            "keys": "ctrl+t"
-        },
-        {
-            "command": {
-                "action": "splitPane",
-                "split": "auto",
-                "splitMode": "duplicate"
-            },
-            "keys": "alt+shift+d"
-        },
-        {
-            "command": "commandPalette",
-            "keys": "ctrl+shift+p"
-        },
-        {
-            "command": "toggleFocusMode",
+            "id": "Terminal.ToggleFocusMode",
             "keys": "f11"
         },
         {
-            "command": "quakeMode",
+            "id": "Terminal.OpenNewWindow",
+            "keys": "ctrl+n"
+        },
+        {
+            "id": "Terminal.OpenNewTab",
+            "keys": "ctrl+t"
+        },
+        {
+            "id": "Terminal.CopyToClipboard",
+            "keys": "ctrl+c"
+        },
+        {
+            "id": "Terminal.ToggleCommandPalette",
+            "keys": "ctrl+shift+p"
+        },
+        {
+            "id": "Terminal.DuplicatePaneAuto",
+            "keys": "alt+shift+d"
+        },
+        {
+            "id": "Terminal.QuakeMode",
             "keys": "alt+`"
         },
         {
@@ -77,6 +65,7 @@
             "type": "remainingProfiles"
         }
     ],
+    "newTabPosition": "afterCurrentTab",
     "profiles": {
         "defaults": {
             "adjustIndistinguishableColors": "indexed",
@@ -118,69 +107,70 @@
             {
                 "colorScheme": "Ubuntu (modified)",
                 "guid": "{75b75a24-dd19-529d-bbf8-c3a74f8d232f}",
+                "hidden": false,
                 "name": "Ubuntu",
                 "pathTranslationStyle": "wsl",
                 "source": "Microsoft.WSL"
             },
             {
+                "colorScheme": "Japanesque",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{c38506cd-decb-47da-bfa2-3c4cd3cc28fa}",
-                "name": "Random-Japanesque-607",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "Japanesque"
+                "name": "Random-Japanesque-607"
             },
             {
+                "colorScheme": "OneStar",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{0b7e8c92-37d7-447f-a375-21abae9079a5}",
-                "name": "Random-OneStar-953",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "OneStar"
+                "name": "Random-OneStar-953"
             },
             {
+                "colorScheme": "nord",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{d771446f-9604-4f4b-aac4-688f4e38622d}",
-                "name": "Random-nord-878",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "nord"
+                "name": "Random-nord-878"
             },
             {
+                "colorScheme": "Solarized Darcula",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{931abc70-95ff-4051-9ee8-b8a4fa0f5cd9}",
-                "name": "Random-Solarized Darcula-833",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "Solarized Darcula"
+                "name": "Random-Solarized Darcula-833"
             },
             {
+                "colorScheme": "Rippedcasts",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{1a2405b9-5ed6-46a8-875e-7b87d81f12d1}",
-                "name": "Random-Rippedcasts-904",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "Rippedcasts"
+                "name": "Random-Rippedcasts-904"
             },
             {
+                "colorScheme": "Breeze",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{3872eb4e-ecc4-4970-b46c-e0d57514f6a9}",
-                "name": "Random-Breeze-671",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "Breeze"
+                "name": "Random-Breeze-671"
             },
             {
+                "colorScheme": "tokyonight",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{eaceb909-9365-4a60-9816-678497609162}",
-                "name": "Random-tokyonight-515",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "tokyonight"
+                "name": "Random-tokyonight-515"
             },
             {
+                "colorScheme": "Sonoran Gothic",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{43705da8-d68c-449a-9c45-508b563b4717}",
-                "name": "Random-Sonoran Gothic-649",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "Sonoran Gothic"
+                "name": "Random-Sonoran Gothic-649"
             },
             {
+                "colorScheme": "Mathias",
+                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
                 "guid": "{4838233c-cc9d-48e8-a915-2dd8847d00fe}",
-                "name": "Random-Mathias-132",
-                "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "Mathias"
+                "name": "Random-Mathias-132"
             },
             {
-                "guid": "{e6c16b2c-1d81-4457-9291-6bc2eb43f25b}",
-                "name": "Random-Rose Pine-900",
+                "colorScheme": "Rose Pine",
                 "commandline": "pwsh.exe -NoExit -NoLogo -File C:/Users/AlanHape/source/repos/config/windows/terminal/PowershellProfile.ps1",
-                "colorScheme": "Rose Pine"
+                "guid": "{e6c16b2c-1d81-4457-9291-6bc2eb43f25b}",
+                "name": "Random-Rose Pine-900"
             }
         ]
     },
@@ -485,5 +475,27 @@
             "yellow": "#E0AF68"
         }
     ],
-    "themes": []
+    "showAdminShield": true,
+    "showTerminalTitleInTitlebar": true,
+    "snapToGridOnResize": true,
+    "tabWidthMode": "equal",
+    "theme": "HighContrastTabs",
+    "themes": [
+        {
+            "name": "HighContrastTabs",
+            "tab": {
+                "background": "#E0AF68",
+                "iconStyle": "hidden",
+                "unfocusedBackground": "#00000000"
+            },
+            "tabRow": {
+                "background": "#000000FF",
+                "unfocusedBackground": "#000000FF"
+            }
+        }
+    ],
+    "trimPaste": true,
+    "useAcrylicInTabRow": false,
+    "warning.confirmCloseAllTabs": false,
+    "windowingBehavior": "useExisting"
 }
