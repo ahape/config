@@ -17,6 +17,10 @@ if command -v fdfind > /dev/null 2>&1 && ! command -v fd > /dev/null 2>&1; then
   alias fd="fdfind"
 fi
 
+if [[ -s "$HOME/.nvm/nvm.sh" ]]; then
+  . "$HOME/.nvm/nvm.sh"
+fi
+
 alias py="python3"
 #
 # zsh 5.9 (arm64-apple-darwin)

@@ -41,6 +41,7 @@ fi
 typeset -U path; path=($path);
 
 export EDITOR=nvim
+export NVM_DIR="$HOME/.nvm"
 
 # See http://aperiodic.net/screen/title_examples
 # Allows for screen command to read current process name out to window title
