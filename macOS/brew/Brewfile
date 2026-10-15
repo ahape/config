@@ -1,69 +1,137 @@
 tap "powershell/tap"
+# Codec library for encoding and decoding AV1 video streams
 brew "aom"
+# Tool for generating GNU Standards-compliant Makefiles
 brew "automake"
-brew "binutils"
-brew "gettext"
-brew "glib"
-brew "cmake"
-brew "curl"
-brew "docker", link: false
-brew "dotnet"
-brew "duckdb"
-brew "libtiff"
-brew "erlang"
-brew "elixir"
-brew "gcc"
-brew "jpeg-xl"
-brew "libavif"
-brew "gnutls"
-brew "gnupg"
-brew "harfbuzz"
-brew "poppler"
+# Interpreted, interactive, object-oriented programming language
 brew "python@3.14"
+# Microsoft Azure CLI 2.0
+brew "azure-cli"
+# GNU binary tools for native development
+brew "binutils"
+# GNU internationalization (i18n) and localization (l10n) library
+brew "gettext"
+# Core application library for C
+brew "glib"
+# Cross-platform make
+brew "cmake"
+# Get a file from an HTTP, HTTPS or FTP server
+brew "curl"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# .NET Core
+brew "dotnet"
+# Embeddable SQL OLAP Database Management System
+brew "duckdb"
+# TIFF library and utilities
+brew "libtiff"
+# Programming language for highly scalable real-time systems
+brew "erlang"
+# Functional metaprogramming aware language built on Erlang VM
+brew "elixir"
+# GNU compiler collection
+brew "gcc"
+# New file format for still image compression
+brew "jpeg-xl"
+# Library for encoding and decoding .avif files
+brew "libavif"
+# GNU Transport Layer Security (TLS) Library
+brew "gnutls"
+# GNU Privacy Guard (OpenPGP)
+brew "gnupg"
+# OpenType text shaping engine
+brew "harfbuzz"
+# PDF rendering library (based on the xpdf-3.0 code base)
+brew "poppler"
+# Geospatial Data Abstraction Library
 brew "gdal"
+# GitHub command-line tool
 brew "gh"
+# Image manipulation
 brew "netpbm"
+# Framework for layout and rendering of i18n text
 brew "pango"
+# Library to render SVG files using Cairo
 brew "librsvg"
+# Graph visualization software from AT&T and Bell Labs
 brew "graphviz"
+# Open-source, cross-platform JavaScript runtime environment
 brew "node"
+# Interactive environments for writing and running code
 brew "jupyterlab", link: false
+# Development kit for the Java programming language
 brew "openjdk"
+# Statically typed programming language for the JVM
 brew "kotlin"
+# Toolkit for developing mapping applications
 brew "mapnik"
+# Hash utilities
 brew "md5sha1sum"
+# Ambitious Vim-fork focused on extensibility and agility
 brew "neovim"
+# HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "nginx"
+# Small build system for use with gyp or CMake
 brew "ninja"
+# Search tool like grep and The Silver Searcher
 brew "ripgrep"
+# AI coding agent, built for the terminal
 brew "opencode"
+# SSL/TLS VPN implementing OSI layer 2 or 3 secure network extension
 brew "openvpn"
+# OpenStreetMap data to PostgreSQL converter
 brew "osm2pgsql"
+# Highly capable, feature-rich programming language
 brew "perl"
+# Adds support for geographic objects to PostgreSQL
 brew "postgis"
+# Object-relational database system
 brew "postgresql@14"
+# Object-relational database system
 brew "postgresql@17", restart_service: :changed
+# User interface to the TELNET protocol
 brew "telnet"
+# Terminal multiplexer
 brew "tmux"
+# Validating, recursive, caching DNS resolver
 brew "unbound"
+# Extremely fast Python package installer and resolver, written in Rust
 brew "uv"
+# Vi 'workalike' with many additional features
 brew "vim"
+# Internet file retriever
 brew "wget"
+# JavaScript package manager
 brew "yarn"
+# Terminal-based AI coding assistant
 cask "claude-code"
+# OpenAI's coding agent that runs in your terminal
 cask "codex"
+# Brings the power of Copilot coding agent directly to your terminal
 cask "copilot-cli"
+# Web browser
 cask "firefox"
+# Cross-platform Git credential storage for multiple hosting providers
 cask "git-credential-manager"
+# Web browser
 cask "google-chrome"
+# Desktop application for JupyterLab
 cask "jupyterlab-app"
+# Animated screen capture application
 cask "licecap"
+# Clipboard manager
 cask "maccy"
+# Open-source software for live streaming and screen recording
 cask "obs"
+# Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
+# Music streaming service
 cask "spotify"
+# Open-source code editor
 cask "visual-studio-code"
+# Multimedia player
 cask "vlc"
+# Network protocol analyzer
 cask "wireshark-app"
 vscode "angular.ng-template"
 vscode "dbaeumer.vscode-eslint"
@@ -79,8 +147,4 @@ vscode "ms-python.vscode-pylance"
 vscode "ms-python.vscode-python-envs"
 vscode "ms-vscode.powershell"
 vscode "sonarsource.sonarlint-vscode"
-npm "@angular/cli"
-npm "@google/gemini-cli"
-npm "hereby"
-npm "surge"
-npm "typescript"
+npm "corepack"
