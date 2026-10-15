@@ -19,6 +19,7 @@
 "core.editor"                                                             , "vim"                                                              , ""
 "core.excludesfile"                                                       , "$HOME/.gitignore-global"                                          , ""
 "rebase.updateRefs"                                                       , "true"                                                             , ""
+"init.defaultBranch"                                                      , "master"                                                           , ""
 "credential.https://dev.azure.com.useHttpPath"                            , "true"                                                             , ""
 "credential.https://github.com.username"                                  , "ahape"                                                            , ""
 "credential.https://github.com/ahape/.username"                           , "ahape"                                                            , ""
